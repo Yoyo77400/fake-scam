@@ -7,10 +7,16 @@ contract VotedNFT is ERC721 {
 
     mapping(address => bool) whiteList;
 
+    error mintWlError(bool , bool);
     constructor(string memory _name, string memory _tag) ERC721(_name, _tag){}
 
     function addWhiteList(address whiteListed) public {
         whiteList[whiteListed] = true ;
+    }
+
+    function mintNFT() public {
+        require(whiteList[msg.sender] == true, mintWlError(true, whiteList[msg.sender]));
+        
     }
 
 }
