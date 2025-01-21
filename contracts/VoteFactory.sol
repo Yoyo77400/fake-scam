@@ -4,7 +4,7 @@ pragma solidity ^0.8.27;
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import "./Vote.sol";
 
-contract Factory is Ownable{
+contract VoteFactory is Ownable{
     address[] public votes;
 
     constructor() Ownable(msg.sender){}
