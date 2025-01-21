@@ -17,11 +17,11 @@ contract VotedNFT is ERC721 {
         whiteList[whiteListed] = true ;
     }
 
-    function mintNFT(address _account) external payable {
+    function mintNFT() external payable {
         require(whiteList[msg.sender] == true, mintWlError(true, whiteList[msg.sender]));
         require(accountQuantity[msg.sender] == 0, alreadyMint(0, accountQuantity[msg.sender]));
         
-        _safeMint(_account, 1);
+        _safeMint(msg.sender, 1);
     }
 
 }
