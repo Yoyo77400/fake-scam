@@ -2,6 +2,7 @@
 pragma solidity ^0.8.27;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "./VotedNFT.sol";
 
 contract Voting is ERC20 {
 
@@ -39,6 +40,7 @@ contract Voting is ERC20 {
 
         votes[_id]++;
         hasVoted[msg.sender] = true;
+        
     }
 
     function getVoteResult() public view returns(uint256[4] memory){
